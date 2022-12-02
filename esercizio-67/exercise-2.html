@@ -1,0 +1,19 @@
+<html>
+  <body>
+    <div id="container" style="display: flex; align-items: center;"></div>
+  </body>
+</html>
+
+<script>
+  // code here
+  async function todoList(){
+    let response = await fetch ("https://jsonplaceholder.typicode.com/todos/4");
+    let data = await response.json();
+    const {title, completed} = data;
+    const container = document.querySelector("#container");
+    container.innerHTML=`<h2> ${title} <h2>
+    <input type="checkbox" checked="${completed}">`;  
+    }
+
+  todoList()
+</script>

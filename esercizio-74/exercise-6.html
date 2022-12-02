@@ -1,0 +1,68 @@
+<html>
+  <body>
+    <div id="container">
+      <h2>Person's Form</h2>
+      <form id="person-form">
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  </body>
+</html>
+
+<script>
+  // Code here
+  const formSel = document.querySelector("#person-form");
+  const button = document.querySelector("button");
+  
+
+  function initForm() {
+    const nameLabel = document.createElement("label");
+    const nameInput = document.createElement("input");
+
+    const lastNameLabel = document.createElement("label");
+    const lastNameInput= document.createElement("input");
+    
+    const ageLabel = document.createElement("label");
+    const ageInput = document.createElement("input");
+    
+    const br = document.createElement("br");
+    
+    const form = document.querySelector("#person-form");
+    nameLabel.innerText = "First name";
+    form.before(nameLabel);
+    form.before(nameInput);
+    nameInput.setAttribute("id","nameInput")
+    form.before(br);
+    form.before(br.cloneNode());
+
+    lastNameLabel.innerText = "Last name";
+    form.before(lastNameLabel);
+    form.before(lastNameInput);
+    lastNameInput.setAttribute("id","lastNameInput")
+    form.before(br.cloneNode());
+    form.before(br.cloneNode());
+
+    ageLabel.innerText = "Age";
+    form.before(ageLabel);
+    form.before(ageInput);
+    ageInput.setAttribute("id","ageInput")
+    form.before(br.cloneNode());
+    form.before(br.cloneNode());
+  }
+
+
+  function submitPersonForm(event) {
+    event.preventDefault();
+    const nameInput = document.getElementById("nameInput");
+    const lastNameInput = document.getElementById("lastNameInput");
+    const ageInput = document.getElementById("ageInput");
+    const person = {
+      firstName: nameInput.value,
+      lastName: lastNameInput.value,
+      age: ageInput.value,
+    };
+    console.log(person);
+  }
+  button.addEventListener("click",submitPersonForm);
+  window.addEventListener("DOMContentLoaded", initForm);
+</script>

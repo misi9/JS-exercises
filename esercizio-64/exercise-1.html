@@ -1,0 +1,52 @@
+<html>
+  <body>
+    <div id="container">
+      <button type="button" id="fetch-post">Fetch Post</button>
+      <button type="button" id="save-post">Save Post on LocalStorage</button>
+    </div>
+  </body>
+</html>
+
+<script>
+  // code here
+  let title;
+  let body;
+  document.querySelector("#fetch-post").addEventListener("click", e => {
+    e.preventDefault;
+    getPost();
+  })
+
+  document.querySelector("#save-post").addEventListener("click", e => {
+    e.preventDefault;
+    savePost();
+  })
+
+  async function getPost() {
+    try {
+      const resp = await fetch("https://jsonplaceholder.typicode.com/posts/1");
+      console.log(resp.headers);
+      const response = await resp.json();
+      title = response.title;
+      body = response.body;
+      return title, body;
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  function savePost() {
+    try {
+      if (title != undefined && body != undefined) {
+        localStorage.setItem("title", title)
+        localStorage.setItem("post", body)
+      } else {
+        throw new Error("Attenzione! non hai scaricato il post")
+      }
+    } catch (err) {
+      alert(err.message);
+    }
+  }
+
+
+  
+</script>
